@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://co2qucrntxhjf"]
+
+[ext_resource type="Texture2D" uid="uid://bwuba6jiyr8bq" path="res://Assets/Limbs/TwoArmsTwoLegs.png" id="1_if8uk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_210lr"]
+atlas = ExtResource("1_if8uk")
+region = Rect2(0, 0, 8, 8)
+
+[node name="Arm1" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_210lr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

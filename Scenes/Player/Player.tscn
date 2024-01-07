@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0vlhv7amriq7"]
+
+[ext_resource type="PackedScene" uid="uid://uv0k8va0d5f1" path="res://Scenes/Entitiy/Entity.tscn" id="1_t2nbs"]
+[ext_resource type="Texture2D" uid="uid://bwuba6jiyr8bq" path="res://Assets/Limbs/TwoArmsTwoLegs.png" id="2_6w7e1"]
+[ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="2_nj025"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lftep"]
+atlas = ExtResource("2_6w7e1")
+region = Rect2(0, 16, 8, 8)
+
+[node name="Player" instance=ExtResource("1_t2nbs")]
+motion_mode = 1
+script = ExtResource("2_nj025")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = SubResource("AtlasTexture_lftep")
+
+[node name="Limbs" type="Node2D" parent="." index="4"]
+
+[node name="Arm1" type="Node2D" parent="Limbs" index="0"]
+unique_name_in_owner = true
+position = Vector2(-2, 0)
+
+[node name="Arm2" type="Node2D" parent="Limbs" index="1"]
+unique_name_in_owner = true
+position = Vector2(2, 0)
+
+[node name="Leg1" type="Node2D" parent="Limbs" index="2"]
+unique_name_in_owner = true
+position = Vector2(-1, 4)
+
+[node name="Leg2" type="Node2D" parent="Limbs" index="3"]
+unique_name_in_owner = true
+position = Vector2(1, 4)
+
+[node name="Camera2D" type="Camera2D" parent="." index="5"]
+zoom = Vector2(3.285, 3.285)
+
+[node name="ArmStates" type="Node2D" parent="." index="6"]
+
+[node name="OneArm" type="Node" parent="ArmStates" index="0"]
+unique_name_in_owner = true
+
+[node name="TwoArms" type="Node" parent="ArmStates" index="1"]
+unique_name_in_owner = true
+
+[node name="NoArms" type="Node" parent="ArmStates" index="2"]
+
+[node name="LegStates" type="Node2D" parent="." index="7"]
+
+[node name="OneLeg" type="Node" parent="LegStates" index="0"]
+unique_name_in_owner = true
+
+[node name="TwoLegs" type="Node" parent="LegStates" index="1"]
+unique_name_in_owner = true
+
+[node name="NoLegs" type="Node" parent="LegStates" index="2"]
