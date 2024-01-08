@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvui17rcsjanh"]
+
+[ext_resource type="PackedScene" uid="uid://2h4k6n2hyfl7" path="res://Scenes/Enemies/angry_villager.tscn" id="1_07hlc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hx7ww"]
+size = Vector2(311, 22)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_khk1e"]
+
+[node name="SimpleTestScene" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(197, 197)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_hx7ww")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(-1.07884e-05, 7.27177e-06)
+scale = Vector2(312, 22)
+texture = SubResource("PlaceholderTexture2D_khk1e")
+
+[node name="AngryVillager" parent="." instance=ExtResource("1_07hlc")]
+position = Vector2(196, 146)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(200, 112)
+zoom = Vector2(2, 2)

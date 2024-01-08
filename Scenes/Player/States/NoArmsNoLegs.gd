@@ -9,4 +9,4 @@ func move():
 
 
 func _ready():
-	
+	pass

@@ -1,0 +1,142 @@
+[gd_scene load_steps=22 format=3 uid="uid://2h4k6n2hyfl7"]
+
+[ext_resource type="PackedScene" uid="uid://uv0k8va0d5f1" path="res://Scenes/Entitiy/Entity.tscn" id="1_geway"]
+[ext_resource type="Script" path="res://Scenes/Enemies/angry_villager.gd" id="2_husd1"]
+[ext_resource type="Texture2D" uid="uid://d2mx7cal5ak5t" path="res://Assets/Gothicvania - Series/villager/idle-spritesheet.png" id="2_ll6v3"]
+[ext_resource type="Texture2D" uid="uid://v884j0n0mw48" path="res://Assets/Gothicvania - Series/villager/walk-spritesheet.png" id="3_wnema"]
+[ext_resource type="Script" path="res://Scenes/Enemies/states/state_machine.gd" id="5_1icyd"]
+[ext_resource type="Script" path="res://Scenes/Enemies/states/idle.gd" id="6_v8p2m"]
+[ext_resource type="Script" path="res://Scenes/Enemies/states/walk.gd" id="7_uutbs"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cghha"]
+radius = 5.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mtpr"]
+atlas = ExtResource("2_ll6v3")
+region = Rect2(0, 0, 45, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5usp"]
+atlas = ExtResource("2_ll6v3")
+region = Rect2(45, 0, 45, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ou5gh"]
+atlas = ExtResource("2_ll6v3")
+region = Rect2(90, 0, 45, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4214y"]
+atlas = ExtResource("2_ll6v3")
+region = Rect2(135, 0, 45, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxaj2"]
+atlas = ExtResource("3_wnema")
+region = Rect2(0, 0, 45, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rytt"]
+atlas = ExtResource("3_wnema")
+region = Rect2(45, 0, 45, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tu3ai"]
+atlas = ExtResource("3_wnema")
+region = Rect2(90, 0, 45, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnox8"]
+atlas = ExtResource("3_wnema")
+region = Rect2(135, 0, 45, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6dwr"]
+atlas = ExtResource("3_wnema")
+region = Rect2(180, 0, 45, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_viil8"]
+atlas = ExtResource("3_wnema")
+region = Rect2(225, 0, 45, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3r1fm"]
+atlas = ExtResource("3_wnema")
+region = Rect2(270, 0, 45, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cuksq"]
+atlas = ExtResource("3_wnema")
+region = Rect2(315, 0, 45, 57)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ncfhr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7mtpr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5usp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ou5gh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4214y")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sxaj2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rytt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tu3ai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mnox8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6dwr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_viil8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3r1fm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cuksq")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[node name="AngryVillager" instance=ExtResource("1_geway")]
+position = Vector2(0, -29)
+script = ExtResource("2_husd1")
+jump_velocity = -400.0
+
+[node name="CollisionShape2D" parent="." index="3"]
+position = Vector2(0, 14)
+shape = SubResource("CapsuleShape2D_cghha")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="4"]
+position = Vector2(0, 1)
+sprite_frames = SubResource("SpriteFrames_ncfhr")
+animation = &"idle"
+frame_progress = 0.789578
+
+[node name="StateMachine" type="Node" parent="." index="5" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("5_1icyd")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("enemy", "anim")]
+script = ExtResource("6_v8p2m")
+enemy = NodePath("../..")
+anim = NodePath("../../AnimatedSprite2D")
+
+[node name="Walk" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("enemy", "anim")]
+script = ExtResource("7_uutbs")
+enemy = NodePath("../..")
+anim = NodePath("../../AnimatedSprite2D")
+
+[node name="Chase" type="Node" parent="StateMachine" index="2"]
+
+[node name="Attack" type="Node" parent="StateMachine" index="3"]
