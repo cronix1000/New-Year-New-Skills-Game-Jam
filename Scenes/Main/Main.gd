@@ -6,4 +6,6 @@ func _ready():
 	PlayerStats.emit_signal("limb_changed", "Arm1")
 	PlayerStats.limbs["Arm2"] = "Arm2"
 	PlayerStats.emit_signal("limb_changed", "Arm2")
+	
+	
 

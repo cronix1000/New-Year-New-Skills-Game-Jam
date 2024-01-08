@@ -1,7 +1,6 @@
 extends Entity
 
-var arm_state
-var leg_state
+var state
 
 
 func load_limb(limb_name : String):
@@ -22,22 +21,35 @@ func add_limb(body_part):
 	
 	
 func change_states():
-	if(PlayerStats.limbs["Arm1"] == null and PlayerStats.limbs["Arm2"] == null):
-		arm_state = get_node("ArmStates/NoArms")
-	elif(PlayerStats.limbs["Arm1"] == null or PlayerStats.limbs["Arm2"] == null):
-		arm_state = get_node("ArmStates/OneArm")
-	elif(PlayerStats.limbs["Arm1"] != null and PlayerStats.limbs["Arm2"] != null):
-		arm_state = get_node("ArmStates/TwoArms")
-	
-	if(PlayerStats.limbs["Leg1"] == null and PlayerStats.limbs["Leg2"] == null):
-		arm_state = get_node("LegStates/NoLegs")
-	elif(PlayerStats.limbs["Leg1"] == null or PlayerStats.limbs["Leg2"] == null):
-		arm_state = get_node("LegStates/OneLeg")
-	elif(PlayerStats.limbs["Leg1"] != null and PlayerStats.limbs["Leg2"] != null):
-		arm_state = get_node("LegStates/TwoLegs")
+	match(PlayerStats.arm_count):
+		0:
+			match(PlayerStats.leg_count):
+				0:
+					state = %NoArmsNoLegs
+				1:
+					state = %NoArmsOneLeg
+				2:
+					state = %NoArmTwoLegs
+		1:
+			match(PlayerStats.leg_count):
+				0:
+					state = %OneArmNolegs
+				1:
+					state = %OneArmOneLeg
+				2:
+					state = %OneArmTwoLegs
+		2:
+			match(PlayerStats.leg_count):
+				0:
+					state = %TwoArmsNoLegs
+				1:
+					state = %TwoArmsOneLeg
+				2:
+					state = %TwoArmsTwoLegs
+					
 	
 func _process(delta):
 	if get_node("Limbs/Arm1").get_child(0):
 		print(get_node("Limbs/Arm1").get_child(0).name)
 		
-	leg_state.move()
+	state.move()

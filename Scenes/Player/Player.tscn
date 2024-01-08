@@ -1,19 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0vlhv7amriq7"]
+[gd_scene load_steps=12 format=3 uid="uid://d0vlhv7amriq7"]
 
 [ext_resource type="PackedScene" uid="uid://uv0k8va0d5f1" path="res://Scenes/Entitiy/Entity.tscn" id="1_t2nbs"]
-[ext_resource type="Texture2D" uid="uid://bwuba6jiyr8bq" path="res://Assets/Limbs/TwoArmsTwoLegs.png" id="2_6w7e1"]
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="2_nj025"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lftep"]
-atlas = ExtResource("2_6w7e1")
-region = Rect2(0, 16, 8, 8)
+[ext_resource type="Script" path="res://Scenes/Player/States/NoArmsNoLegs.gd" id="4_m8t04"]
+[ext_resource type="Script" path="res://Scenes/Player/States/NoArmsOneLeg.gd" id="5_5hki1"]
+[ext_resource type="Script" path="res://Scenes/Player/States/OneArmNolegs.gd" id="5_nylim"]
+[ext_resource type="Script" path="res://Scenes/Player/States/NoArmTwoLegs.gd" id="6_2bw7j"]
+[ext_resource type="Script" path="res://Scenes/Player/States/OneArmOneLeg.gd" id="6_uer3d"]
+[ext_resource type="Script" path="res://Scenes/Player/States/OneArmTwoLegs.gd" id="7_5cqst"]
+[ext_resource type="Script" path="res://Scenes/Player/States/TwoArmsNoLegs.gd" id="8_1ate1"]
+[ext_resource type="Script" path="res://Scenes/Player/States/TwoArmsOneLeg.gd" id="9_0qby7"]
+[ext_resource type="Script" path="res://Scenes/Player/States/TwoArmsTwoLegs.gd" id="10_dkruc"]
 
 [node name="Player" instance=ExtResource("1_t2nbs")]
 motion_mode = 1
 script = ExtResource("2_nj025")
-
-[node name="Sprite2D" parent="." index="1"]
-texture = SubResource("AtlasTexture_lftep")
 
 [node name="Limbs" type="Node2D" parent="." index="4"]
 
@@ -36,22 +37,40 @@ position = Vector2(1, 4)
 [node name="Camera2D" type="Camera2D" parent="." index="5"]
 zoom = Vector2(3.285, 3.285)
 
-[node name="ArmStates" type="Node2D" parent="." index="6"]
+[node name="States" type="Node2D" parent="." index="6"]
 
-[node name="OneArm" type="Node" parent="ArmStates" index="0"]
+[node name="NoArmsNoLegs" type="Node" parent="States" index="0"]
 unique_name_in_owner = true
+script = ExtResource("4_m8t04")
 
-[node name="TwoArms" type="Node" parent="ArmStates" index="1"]
+[node name="NoArmsOneLeg" type="Node" parent="States" index="1"]
 unique_name_in_owner = true
+script = ExtResource("5_5hki1")
 
-[node name="NoArms" type="Node" parent="ArmStates" index="2"]
-
-[node name="LegStates" type="Node2D" parent="." index="7"]
-
-[node name="OneLeg" type="Node" parent="LegStates" index="0"]
+[node name="NoArmTwoLegs" type="Node" parent="States" index="2"]
 unique_name_in_owner = true
+script = ExtResource("6_2bw7j")
 
-[node name="TwoLegs" type="Node" parent="LegStates" index="1"]
+[node name="OneArmNolegs" type="Node" parent="States" index="3"]
 unique_name_in_owner = true
+script = ExtResource("5_nylim")
 
-[node name="NoLegs" type="Node" parent="LegStates" index="2"]
+[node name="OneArmOneLeg" type="Node" parent="States" index="4"]
+unique_name_in_owner = true
+script = ExtResource("6_uer3d")
+
+[node name="OneArmTwoLegs" type="Node" parent="States" index="5"]
+unique_name_in_owner = true
+script = ExtResource("7_5cqst")
+
+[node name="TwoArmsNoLegs" type="Node" parent="States" index="6"]
+unique_name_in_owner = true
+script = ExtResource("8_1ate1")
+
+[node name="TwoArmsOneLeg" type="Node" parent="States" index="7"]
+unique_name_in_owner = true
+script = ExtResource("9_0qby7")
+
+[node name="TwoArmsTwoLegs" type="Node" parent="States" index="8"]
+unique_name_in_owner = true
+script = ExtResource("10_dkruc")
