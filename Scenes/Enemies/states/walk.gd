@@ -1,4 +1,4 @@
-extends State
+extends EnemyState
 
 @export var enemy : Entity
 @export var anim : AnimatedSprite2D

@@ -144,6 +144,8 @@ position = Vector2(-0.5, 4.5)
 shape = SubResource("RectangleShape2D_nd70i")
 
 [node name="PlayerDetectionArea" type="Area2D" parent="." index="7"]
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerDetectionArea" index="0"]
 polygon = PackedVector2Array(0, -20, -266, -69, -266, 66, -1, 29, 256, 65, 256, -71)
@@ -162,7 +164,9 @@ script = ExtResource("7_uutbs")
 enemy = NodePath("../..")
 anim = NodePath("../../AnimatedSprite2D")
 
-[node name="Chase" type="Node" parent="StateMachine" index="2"]
+[node name="Chase" type="Node" parent="StateMachine" index="2" node_paths=PackedStringArray("enemy", "attack_trigger")]
 script = ExtResource("9_tu2wf")
+enemy = NodePath("../..")
+attack_trigger = NodePath("../../TriggerAttackArea")
 
 [node name="Attack" type="Node" parent="StateMachine" index="3"]

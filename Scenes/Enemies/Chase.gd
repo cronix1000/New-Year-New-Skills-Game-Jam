@@ -1,15 +1,16 @@
-extends State
+extends EnemyState
 
 @export var enemy : Entity
 @export var attack_trigger : Area2D
 
+var attack : Callable = func(): emit_signal("transitioned", self, "attack")
 
 func enter():
-	attack_trigger.body_entered.connect(func(): emit_signal("transitioned", self, "attack"))
+	attack_trigger.body_entered.connect(attack)
 
 
 func exit():
-	attack_trigger.body_entered.disconnect(func(): emit_signal("transitioned", self, "attack"))
+	attack_trigger.body_entered.disconnect(attack)
 
 
 func update(_delta : float):

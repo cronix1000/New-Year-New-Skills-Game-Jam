@@ -1,14 +1,14 @@
 extends Node
 
-@export var initial_state : State
+@export var initial_state : EnemyState
 
 var states = {}
-var current_state : State
+var current_state : EnemyState
 
 
 func _ready():
 	for child in get_children():
-		if child is State:
+		if child is EnemyState:
 			states[child.name.to_lower()] = child
 			child.transitioned.connect(on_child_transition)
 	if initial_state:
