@@ -14,7 +14,7 @@
 [ext_resource type="Script" path="res://Scenes/Player/LimbStates/TwoArmsTwoLegs.gd" id="12_3slqf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2jprs"]
-size = Vector2(20, 32)
+size = Vector2(4, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s433f"]
 size = Vector2(17, 32)
@@ -29,6 +29,7 @@ shape = SubResource("RectangleShape2D_2jprs")
 texture = ExtResource("3_t2oh0")
 
 [node name="CollisionShape2D" parent="." index="3"]
+position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_s433f")
 
 [node name="Limbs" type="Node2D" parent="." index="4"]
@@ -39,8 +40,7 @@ position = Vector2(-4, 8)
 
 [node name="Arm2" type="Node2D" parent="Limbs" index="1"]
 unique_name_in_owner = true
-z_index = -1
-position = Vector2(4, 8)
+position = Vector2(8, 0)
 
 [node name="Leg1" type="Node2D" parent="Limbs" index="2"]
 unique_name_in_owner = true
