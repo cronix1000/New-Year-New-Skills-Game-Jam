@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d0vlhv7amriq7"]
+[gd_scene load_steps=17 format=3 uid="uid://d0vlhv7amriq7"]
 
 [ext_resource type="PackedScene" uid="uid://uv0k8va0d5f1" path="res://Scenes/Entitiy/Entity.tscn" id="1_t2nbs"]
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="2_nj025"]
@@ -12,12 +12,16 @@
 [ext_resource type="Script" path="res://Scenes/Player/LimbStates/TwoArmsNoLegs.gd" id="10_y4km1"]
 [ext_resource type="Script" path="res://Scenes/Player/LimbStates/TwoArmsOneLeg.gd" id="11_377kl"]
 [ext_resource type="Script" path="res://Scenes/Player/LimbStates/TwoArmsTwoLegs.gd" id="12_3slqf"]
+[ext_resource type="Script" path="res://Scenes/Player/PickupComponent.gd" id="13_56p67"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2jprs"]
 size = Vector2(20, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s433f"]
 size = Vector2(17, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k7tdr"]
+size = Vector2(34, 26)
 
 [node name="Player" instance=ExtResource("1_t2nbs")]
 script = ExtResource("2_nj025")
@@ -90,5 +94,19 @@ script = ExtResource("11_377kl")
 [node name="TwoArmsTwoLegs" type="Node2D" parent="States" index="8"]
 unique_name_in_owner = true
 script = ExtResource("12_3slqf")
+
+[node name="PickupComponent" type="Area2D" parent="." index="7" node_paths=PackedStringArray("player")]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("13_56p67")
+player = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupComponent" index="0"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_k7tdr")
+
+[node name="HoldTimer" type="Timer" parent="PickupComponent" index="1"]
+wait_time = 0.2
+one_shot = true
 
 [editable path="Hurt_Box"]

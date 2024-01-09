@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dt0o8s2gbg4rb"]
+[gd_scene load_steps=4 format=3 uid="uid://dt0o8s2gbg4rb"]
 
 [ext_resource type="Texture2D" uid="uid://bwuba6jiyr8bq" path="res://Assets/Limbs/TwoArmsTwoLegs.png" id="1_1d0kb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tbjy5"]
+size = Vector2(3, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7vh5m"]
 atlas = ExtResource("1_1d0kb")
@@ -9,6 +12,8 @@ region = Rect2(0, 8, 8, 8)
 [node name="Leg1" type="CharacterBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_tbjy5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_7vh5m")
