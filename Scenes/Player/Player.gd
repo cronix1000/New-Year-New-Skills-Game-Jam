@@ -57,7 +57,7 @@ func flip_limbs():
 	
 	if(arm2_node != null):
 		Arm1.add_child(arm2_node)
-	if(arm2_node != null):
+	if(arm1_node != null):
 		Arm2.add_child(arm1_node)
 	if(leg2_node != null):
 		Leg1.add_child(leg2_node)
