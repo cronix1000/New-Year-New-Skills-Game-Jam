@@ -1,12 +1,17 @@
-[gd_scene load_steps=22 format=3 uid="uid://2h4k6n2hyfl7"]
+[gd_scene load_steps=26 format=3 uid="uid://2h4k6n2hyfl7"]
 
 [ext_resource type="PackedScene" uid="uid://uv0k8va0d5f1" path="res://Scenes/Entitiy/Entity.tscn" id="1_geway"]
 [ext_resource type="Script" path="res://Scenes/Enemies/angry_villager.gd" id="2_husd1"]
 [ext_resource type="Texture2D" uid="uid://d2mx7cal5ak5t" path="res://Assets/Gothicvania - Series/villager/idle-spritesheet.png" id="2_ll6v3"]
+[ext_resource type="PackedScene" uid="uid://dhl602tx4ri7w" path="res://Scenes/hurthitbox/Hit_Box.tscn" id="3_6ar1l"]
 [ext_resource type="Texture2D" uid="uid://v884j0n0mw48" path="res://Assets/Gothicvania - Series/villager/walk-spritesheet.png" id="3_wnema"]
 [ext_resource type="Script" path="res://Scenes/Enemies/states/state_machine.gd" id="5_1icyd"]
 [ext_resource type="Script" path="res://Scenes/Enemies/states/idle.gd" id="6_v8p2m"]
 [ext_resource type="Script" path="res://Scenes/Enemies/states/walk.gd" id="7_uutbs"]
+[ext_resource type="Script" path="res://Scenes/Enemies/Chase.gd" id="9_tu2wf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ybw0"]
+size = Vector2(23, 40)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cghha"]
 radius = 5.0
@@ -108,22 +113,42 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nd70i"]
+size = Vector2(43, 45)
+
 [node name="AngryVillager" instance=ExtResource("1_geway")]
 position = Vector2(0, -29)
 script = ExtResource("2_husd1")
 jump_velocity = -400.0
 
-[node name="CollisionShape2D" parent="." index="3"]
+[node name="Hit_Box" parent="." index="1" instance=ExtResource("3_6ar1l")]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hit_Box" index="1"]
+position = Vector2(-12.5, 2)
+shape = SubResource("RectangleShape2D_2ybw0")
+
+[node name="CollisionShape2D" parent="." index="4"]
 position = Vector2(0, 14)
 shape = SubResource("CapsuleShape2D_cghha")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="4"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="5"]
 position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_ncfhr")
 animation = &"idle"
 frame_progress = 0.789578
 
-[node name="StateMachine" type="Node" parent="." index="5" node_paths=PackedStringArray("initial_state")]
+[node name="TriggerAttackArea" type="Area2D" parent="." index="6"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerAttackArea" index="0"]
+position = Vector2(-0.5, 4.5)
+shape = SubResource("RectangleShape2D_nd70i")
+
+[node name="PlayerDetectionArea" type="Area2D" parent="." index="7"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerDetectionArea" index="0"]
+polygon = PackedVector2Array(0, -20, -266, -69, -266, 66, -1, 29, 256, 65, 256, -71)
+
+[node name="StateMachine" type="Node" parent="." index="8" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("5_1icyd")
 initial_state = NodePath("Idle")
 
@@ -138,5 +163,6 @@ enemy = NodePath("../..")
 anim = NodePath("../../AnimatedSprite2D")
 
 [node name="Chase" type="Node" parent="StateMachine" index="2"]
+script = ExtResource("9_tu2wf")
 
 [node name="Attack" type="Node" parent="StateMachine" index="3"]

@@ -19,6 +19,8 @@ func update(_delta : float):
 	idle_time -= _delta
 	if idle_time <= 0:
 		emit_signal("transitioned", self, "walk")
+	if enemy.is_player_in_range:
+		emit_signal("transitioned", self, "chase")
 
 
 func physics_update(_delta : float):

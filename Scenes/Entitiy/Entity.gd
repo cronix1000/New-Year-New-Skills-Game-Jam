@@ -17,6 +17,12 @@ signal hp_changed(new_hp)
 signal hp_max_changed(new_total_hp)
 signal has_died
 
+var is_facing_left : bool: 
+	get: return $CharacterSprite.flip_h
+var is_facing_right : bool: 
+	get: return not $CharacterSprite.flip_h
+
+
 func load_ability(ability_name : String):
 	var scene = load("res://Scenes/Abilities/" + ability_name + ".tscn")
 	var scene_node = scene.instantiate()
