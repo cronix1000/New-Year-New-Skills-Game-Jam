@@ -1,8 +1,8 @@
 [gd_scene load_steps=15 format=3 uid="uid://d0vlhv7amriq7"]
 
 [ext_resource type="PackedScene" uid="uid://uv0k8va0d5f1" path="res://Scenes/Entitiy/Entity.tscn" id="1_t2nbs"]
+[ext_resource type="Texture2D" uid="uid://bwuba6jiyr8bq" path="res://Assets/Limbs/TwoArmsTwoLegs.png" id="2_6w7e1"]
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="2_nj025"]
-[ext_resource type="Texture2D" uid="uid://bnaojyk1ktj10" path="res://Assets/Using/playerBody.png" id="3_t2oh0"]
 [ext_resource type="Script" path="res://Scenes/Player/LimbStates/NoArmsNoLegs.gd" id="4_286m1"]
 [ext_resource type="Script" path="res://Scenes/Player/LimbStates/NoArmsOneLeg.gd" id="5_esfmc"]
 [ext_resource type="Script" path="res://Scenes/Player/LimbStates/NoArmTwoLegs.gd" id="6_ndlq3"]
@@ -13,20 +13,18 @@
 [ext_resource type="Script" path="res://Scenes/Player/LimbStates/TwoArmsOneLeg.gd" id="11_377kl"]
 [ext_resource type="Script" path="res://Scenes/Player/LimbStates/TwoArmsTwoLegs.gd" id="12_3slqf"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2jprs"]
-size = Vector2(20, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhvhw"]
+atlas = ExtResource("2_6w7e1")
+region = Rect2(0, 16, 8, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s433f"]
-size = Vector2(17, 32)
+size = Vector2(4, 8)
 
 [node name="Player" instance=ExtResource("1_t2nbs")]
 script = ExtResource("2_nj025")
 
-[node name="CollisionShape2D" parent="Hurt_Box" index="0"]
-shape = SubResource("RectangleShape2D_2jprs")
-
 [node name="CharacterSprite" parent="." index="1"]
-texture = ExtResource("3_t2oh0")
+texture = SubResource("AtlasTexture_hhvhw")
 
 [node name="CollisionShape2D" parent="." index="3"]
 shape = SubResource("RectangleShape2D_s433f")
@@ -35,20 +33,19 @@ shape = SubResource("RectangleShape2D_s433f")
 
 [node name="Arm1" type="Node2D" parent="Limbs" index="0"]
 unique_name_in_owner = true
-position = Vector2(-4, 8)
+position = Vector2(-2, 0)
 
 [node name="Arm2" type="Node2D" parent="Limbs" index="1"]
 unique_name_in_owner = true
-z_index = -1
-position = Vector2(4, 8)
+position = Vector2(2, 0)
 
 [node name="Leg1" type="Node2D" parent="Limbs" index="2"]
 unique_name_in_owner = true
-position = Vector2(-5, 15)
+position = Vector2(-1, 4)
 
 [node name="Leg2" type="Node2D" parent="Limbs" index="3"]
 unique_name_in_owner = true
-position = Vector2(5, 15)
+position = Vector2(1, 4)
 
 [node name="Camera2D" type="Camera2D" parent="." index="5"]
 zoom = Vector2(3.285, 3.285)
@@ -90,5 +87,3 @@ script = ExtResource("11_377kl")
 [node name="TwoArmsTwoLegs" type="Node2D" parent="States" index="8"]
 unique_name_in_owner = true
 script = ExtResource("12_3slqf")
-
-[editable path="Hurt_Box"]

@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 @export var width := 0
 @export var height := 0
@@ -9,4 +9,4 @@ func move():
 
 
 func _ready():
-	
+	pass

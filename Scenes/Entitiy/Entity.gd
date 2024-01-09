@@ -3,11 +3,11 @@ extends CharacterBody2D
 class_name Entity
 
 
-@export var movement_speed : int = 30.0
+@export var movement_speed : int = 35.0
 @export var hp_total : int = 0
 var hp : int = hp_total : set = set_hp
 @export var defence : int = 0
-
+var interacting
 
 @onready var player : AnimationPlayer = $AnimationPlayer
 @onready var character_sprite : Sprite2D = $CharacterSprite
@@ -37,7 +37,17 @@ func set_hp_total(value):
 		self.hp = hp
 
 func _on_hurt_box_area_entered(hitbox):
-	var base_damage = hitbox.damage
-	self.hp -= base_damage
-	print(hitbox.get_parent().name + "'s hitbox touched " + name + "'s hurtbox and dealth " + str(base_damage) + " damage")
+	hitbox.name
+	if(hitbox.interacting == false):
+		var base_damage = hitbox.damage
+		self.hp -= base_damage
+	else:
+		interacting = hitbox.name
+		print(hitbox.name)
+		
+
 	# switch to actual recieve damage funtion
+
+
+func _on_hurt_box_area_exited(area):
+	interacting = null
