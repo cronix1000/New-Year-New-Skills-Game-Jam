@@ -2,6 +2,7 @@ extends Node
 
 signal limb_changed(name)
 signal collected_item(item)
+signal removed_item(item_type_name)
 
 var arm_count := 0
 var leg_count := 0

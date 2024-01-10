@@ -6,7 +6,8 @@ extends StaticBody2D
 func _on_interaction_area_area_entered(area):
 	for key in PlayerStats.items["keys"]:
 		if key.id == key_id:
-			# PlayerStats.items["keys"].erase(key)
+			PlayerStats.items["keys"].erase(key)
+			PlayerStats.emit_signal("removed_item", "key")
 			open()
 
 

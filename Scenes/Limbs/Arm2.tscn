@@ -1,6 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://ccomvw1bgo7en"]
+[gd_scene load_steps=6 format=3 uid="uid://ccomvw1bgo7en"]
 
+[ext_resource type="Script" path="res://Scenes/Limbs/Arm.gd" id="1_7gkwr"]
 [ext_resource type="Texture2D" uid="uid://bwuba6jiyr8bq" path="res://Assets/Limbs/TwoArmsTwoLegs.png" id="1_k5jge"]
+[ext_resource type="Texture2D" uid="uid://b5w66c0ha1phy" path="res://Assets/misc/key.png" id="2_cwh0g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2bw6y"]
+size = Vector2(8, 4)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m6ow2"]
 atlas = ExtResource("1_k5jge")
@@ -9,8 +14,17 @@ region = Rect2(8, 0, 8, 8)
 [node name="Arm2" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 0
+script = ExtResource("1_7gkwr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["limb"]]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_2bw6y")
+
+[node name="Key" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-4, -2)
+rotation = 0.837758
+texture = ExtResource("2_cwh0g")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_m6ow2")

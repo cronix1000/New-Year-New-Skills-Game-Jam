@@ -25,6 +25,12 @@ func load_limb(limb_name : String):
 
 func _ready():
 	PlayerStats.connect("limb_changed", Callable(self, "add_limb"))
+	PlayerStats.connect("collected_item", func(item): 
+		if item.is_in_group("key"): 
+			Arm1.get_child(0).is_holding_key=true)
+	PlayerStats.connect("removed_item", func(item_type_name): 
+		if item_type_name == "key": 
+			Arm1.get_child(0).is_holding_key=false)
 	state_factory = StateFactory.new()
 	change_state("idle")
 	
