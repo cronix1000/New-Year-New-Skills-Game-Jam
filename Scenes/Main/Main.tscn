@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ca3ipbl1dh3xm"]
+[gd_scene load_steps=12 format=3 uid="uid://ca3ipbl1dh3xm"]
 
 [ext_resource type="Script" path="res://Scenes/Main/Main.gd" id="1_j3lbm"]
 [ext_resource type="PackedScene" uid="uid://d0vlhv7amriq7" path="res://Scenes/Player/Player.tscn" id="2_71jgl"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bwuba6jiyr8bq" path="res://Assets/Limbs/TwoArmsTwoLegs.png" id="4_4oayg"]
 [ext_resource type="PackedScene" uid="uid://dov6pcl14txky" path="res://Scenes/Cliff/cliff.tscn" id="5_lupfv"]
 [ext_resource type="PackedScene" uid="uid://dt0o8s2gbg4rb" path="res://Scenes/Limbs/Leg1.tscn" id="6_elj44"]
+[ext_resource type="PackedScene" uid="uid://cl6d57l0rpoya" path="res://Scenes/collectables/key.tscn" id="7_jwbtp"]
+[ext_resource type="PackedScene" uid="uid://cg3e0arpddb0v" path="res://Scenes/Objects/door.tscn" id="8_cbu04"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jvx1s"]
 texture = ExtResource("3_38m6c")
@@ -805,7 +807,7 @@ movement_speed = 50
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_hfuq7")
 format = 2
-layer_0/tile_data = PackedInt32Array(65535, 1441792, 0, 0, 1441792, 0, 1, 1441792, 0, 2, 1441792, 0, 65534, 1441792, 0, -3, 1507328, 0, 65533, 1507328, 1, -131069, 1310720, 1, -65533, 1310720, 2, 3, 1376256, 1)
+layer_0/tile_data = PackedInt32Array(65535, 1441792, 0, 0, 1441792, 0, 1, 1441792, 0, 2, 1441792, 0, 65534, 1441792, 0, -3, 1507328, 0, 65533, 1507328, 1, -131069, 1310720, 1, -65533, 1310720, 2, 3, 1376256, 1, -4, 1441792, 0, -5, 1441792, 0, -6, 1441792, 0, -7, 1441792, 0)
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 position = Vector2(25, -27)
@@ -821,6 +823,11 @@ position = Vector2(12, 3.75)
 [node name="Leg1" parent="." instance=ExtResource("6_elj44")]
 position = Vector2(33, -4)
 collision_layer = 8
-collision_mask = 0
+
+[node name="Key" parent="." instance=ExtResource("7_jwbtp")]
+position = Vector2(-21, -5)
+
+[node name="Door" parent="." instance=ExtResource("8_cbu04")]
+position = Vector2(-65, -16)
 
 [editable path="Cliff"]

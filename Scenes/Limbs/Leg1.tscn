@@ -9,7 +9,9 @@ size = Vector2(3, 8)
 atlas = ExtResource("1_1d0kb")
 region = Rect2(0, 8, 8, 8)
 
-[node name="Leg1" type="CharacterBody2D"]
+[node name="Leg1" type="CharacterBody2D" groups=["limb"]]
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0)

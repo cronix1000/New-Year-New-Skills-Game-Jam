@@ -12,7 +12,7 @@
 [ext_resource type="Script" path="res://Scenes/Player/LimbStates/TwoArmsNoLegs.gd" id="10_y4km1"]
 [ext_resource type="Script" path="res://Scenes/Player/LimbStates/TwoArmsOneLeg.gd" id="11_377kl"]
 [ext_resource type="Script" path="res://Scenes/Player/LimbStates/TwoArmsTwoLegs.gd" id="12_3slqf"]
-[ext_resource type="Script" path="res://Scenes/Player/PickupComponent.gd" id="13_56p67"]
+[ext_resource type="Script" path="res://Scenes/Player/InteractionComponent.gd" id="13_0kwcq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2jprs"]
 size = Vector2(20, 32)
@@ -95,17 +95,17 @@ script = ExtResource("11_377kl")
 unique_name_in_owner = true
 script = ExtResource("12_3slqf")
 
-[node name="PickupComponent" type="Area2D" parent="." index="7" node_paths=PackedStringArray("player")]
-collision_layer = 8
-collision_mask = 8
-script = ExtResource("13_56p67")
+[node name="InteractionComponent" type="Area2D" parent="." index="7" node_paths=PackedStringArray("player")]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("13_0kwcq")
 player = NodePath("..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupComponent" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionComponent" index="0"]
 position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_k7tdr")
 
-[node name="HoldTimer" type="Timer" parent="PickupComponent" index="1"]
+[node name="HoldTimer" type="Timer" parent="InteractionComponent" index="1"]
 wait_time = 0.2
 one_shot = true
 

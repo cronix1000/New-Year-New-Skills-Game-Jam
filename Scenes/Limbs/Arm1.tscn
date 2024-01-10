@@ -93,8 +93,8 @@ _data = {
 "climb": SubResource("Animation_0mry1")
 }
 
-[node name="Arm1" type="CharacterBody2D"]
-collision_layer = 8
+[node name="Arm1" type="CharacterBody2D" groups=["limb"]]
+collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

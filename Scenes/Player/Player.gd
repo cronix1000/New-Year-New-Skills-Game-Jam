@@ -31,6 +31,7 @@ func _ready():
 func add_limb(body_part):
 	var node = get_node("Limbs/" + body_part)
 	var limb = load_limb(PlayerStats.limbs[body_part])
+	limb.get_node("CollisionShape2D").disabled = true
 	node.add_child(limb)
 	change_states()
 	

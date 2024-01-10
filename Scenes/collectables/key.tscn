@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cl6d57l0rpoya"]
+
+[ext_resource type="Script" path="res://Scenes/collectables/key.gd" id="1_kr3gc"]
+[ext_resource type="Texture2D" uid="uid://b5w66c0ha1phy" path="res://Assets/misc/key.png" id="2_ol0sf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f3i55"]
+size = Vector2(18, 8)
+
+[node name="Key" type="Area2D" groups=["key"]]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_kr3gc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_f3i55")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ol0sf")

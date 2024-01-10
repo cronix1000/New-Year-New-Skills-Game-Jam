@@ -1,6 +1,7 @@
 extends Node
 
 signal limb_changed(name)
+signal collected_item(item)
 
 var arm_count := 0
 var leg_count := 0
@@ -10,6 +11,10 @@ var limbs = {
 	"Arm2" : null,
 	"Leg1" : null,
 	"Leg2" : null,
+}
+
+var items = {
+	"keys": []
 }
 
 
