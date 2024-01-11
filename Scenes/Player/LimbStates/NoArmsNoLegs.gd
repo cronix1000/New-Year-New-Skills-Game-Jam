@@ -10,3 +10,6 @@ func move():
 
 func _ready():
 	pass
+
+func change_stats():
+	pass

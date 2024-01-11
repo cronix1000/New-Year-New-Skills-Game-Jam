@@ -25,16 +25,30 @@ func load_limb(limb_name : String):
 
 func _ready():
 	PlayerStats.connect("limb_changed", Callable(self, "add_limb"))
+	PlayerStats.connect("limb_removed", Callable(self, "remove_limb"))
 	state_factory = StateFactory.new()
 	change_state("idle")
 	
 func add_limb(body_part):
 	var node = get_node("Limbs/" + body_part)
-	var limb = load_limb(PlayerStats.limbs[body_part])
-	limb.get_node("CollisionShape2D").disabled = true
-	node.add_child(limb)
+	print(PlayerStats.limbs[body_part].substr(0,3))
+	if(PlayerStats.limbs[body_part].substr(0,3) == "Arm" or PlayerStats.limbs[body_part].substr(0,3) == "Leg"):
+		var limb = load_limb(PlayerStats.limbs[body_part])
+		limb.get_node("CollisionShape2D").disabled = true
+		node.add_child(limb)
 	change_states()
-	
+		
+
+func remove_limb(body_part):
+	#var node = get_node("Limbs/" + body_part)
+	#print(PlayerStats.limbs[body_part].substr(0,3))
+	#if(PlayerStats.limbs[body_part].substr(0,3) == "Arm" or PlayerStats.limbs[body_part].substr(0,3) == "Leg"):
+	#	var limb = load_limb(PlayerStats.limbs[body_part])
+	#	limb.get_node("CollisionShape2D").disabled = true
+	#	node.add_child(limb)
+	change_states()
+		
+
 	
 func flip_limbs():
 	var arm1_node = null
@@ -43,11 +57,9 @@ func flip_limbs():
 	var leg2_node = null
 	if(Arm1.get_child_count() == 1):
 		arm1_node = Arm1.get_child(0) 
-		print("Got arm1")
 		Arm1.remove_child(arm1_node)
 	if(Arm2.get_child_count() == 1):
 		arm2_node = Arm2.get_child(0)
-		print("got arm2")
 		Arm2.remove_child(arm2_node)
 	if(Leg1.get_child_count() == 1):
 		leg1_node = Leg1.get_child(0) 
@@ -113,6 +125,7 @@ func change_states():
 					limb_state = %TwoArmsTwoLegs
 		
 	limb_state.change_stats()
+	print(PlayerStats.arm_count)
 	
 func _process(delta):
 	if(Input.is_action_pressed("Left")):

@@ -32,6 +32,7 @@ func _physics_process(delta):
 			limb = player.get_node("Limbs/Arm1").get_children()[0]
 			player.get_node("Limbs/Arm1").remove_child(limb)
 			PlayerStats.limbs["Arm1"] = null
+			PlayerStats.emit_signal("limb_removed", "Arm1")
 	# Release Arm2
 	if Input.is_action_just_pressed("drop2"):
 		if not player.get_node("Limbs/Arm2").get_children().is_empty():

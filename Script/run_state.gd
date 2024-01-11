@@ -12,7 +12,6 @@ func _ready():
 	if character_sprite.flip_h:
 		move_speed *= -1
 	persistent_state.velocity.x += move_speed
-	print(persistent_state.velocity.x)
 
 func _physics_process(_delta):
 	check_interactions()
