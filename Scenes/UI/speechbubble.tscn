@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=3 uid="uid://h8fvjq0ta607"]
+
+[ext_resource type="Texture2D" uid="uid://444wpa7o3de1" path="res://Assets/misc/speech_bubble.png" id="1_5hjj6"]
+[ext_resource type="Script" path="res://Scenes/UI/speechbubble.gd" id="1_f1nf6"]
+[ext_resource type="FontFile" uid="uid://b2trtqce1swmd" path="res://Assets/fonts/arialbd.ttf" id="2_hkywl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_23fb6"]
+font = ExtResource("2_hkywl")
+font_size = 8
+outline_size = 4
+outline_color = Color(0.258824, 0.258824, 0.258824, 1)
+
+[sub_resource type="Animation" id="Animation_5y0lv"]
+resource_name = "appear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpeechBubble:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gpfbs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpeechBubble:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e6hmh"]
+_data = {
+"RESET": SubResource("Animation_gpfbs"),
+"appear": SubResource("Animation_5y0lv")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4mipv"]
+size = Vector2(37, 20)
+
+[node name="Speechbubble" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_f1nf6")
+
+[node name="SpeechBubble" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0.537255)
+position = Vector2(15.5, -12)
+scale = Vector2(1.07813, 1.0625)
+texture = ExtResource("1_5hjj6")
+
+[node name="Label" type="Label" parent="SpeechBubble"]
+offset_left = -28.2899
+offset_top = -21.6471
+offset_right = 32.7101
+offset_bottom = 7.35294
+text = "   pickup with
+        -  e -"
+label_settings = SubResource("LabelSettings_23fb6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_e6hmh")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_4mipv")
