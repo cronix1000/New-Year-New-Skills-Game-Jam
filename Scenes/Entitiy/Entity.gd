@@ -43,11 +43,11 @@ func set_hp_total(value):
 		self.hp = hp
 
 func _on_hurt_box_area_entered(hitbox):
-	hitbox.name
-	if(hitbox.interacting == false):
+	print(hitbox.name)
+	if(hitbox.is_in_group("hitbox")):
 		var base_damage = hitbox.damage
 		self.hp -= base_damage
-	else:
+	if(hitbox.is_in_group("interact")):
 		interacting = hitbox.name
 		print(hitbox.name)
 		

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Cliff/cliff.gd" id="1_ivoc3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ymxtr"]
-size = Vector2(4, 15.5)
+size = Vector2(5, 15.5)
 
 [node name="Cliff" type="Area2D" groups=["interact"]]
 position = Vector2(-45, -12)

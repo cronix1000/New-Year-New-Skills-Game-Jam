@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d0vlhv7amriq7"]
+[gd_scene load_steps=18 format=3 uid="uid://d0vlhv7amriq7"]
 
 [ext_resource type="PackedScene" uid="uid://uv0k8va0d5f1" path="res://Scenes/Entitiy/Entity.tscn" id="1_t2nbs"]
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="2_nj025"]
@@ -21,7 +21,10 @@ size = Vector2(20, 32)
 size = Vector2(17, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k7tdr"]
-size = Vector2(34, 26)
+size = Vector2(22, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5xafh"]
+size = Vector2(21, 26)
 
 [node name="Player" instance=ExtResource("1_t2nbs")]
 script = ExtResource("2_nj025")
@@ -108,5 +111,11 @@ shape = SubResource("RectangleShape2D_k7tdr")
 [node name="HoldTimer" type="Timer" parent="InteractionComponent" index="1"]
 wait_time = 0.2
 one_shot = true
+
+[node name="cutscene_area" type="Area2D" parent="." index="8"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cutscene_area" index="0"]
+position = Vector2(-0.5, 3)
+shape = SubResource("RectangleShape2D_5xafh")
 
 [editable path="Hurt_Box"]

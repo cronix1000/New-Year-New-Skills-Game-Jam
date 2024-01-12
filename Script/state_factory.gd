@@ -6,7 +6,8 @@ func _init():
 	states = {
 		"idle": IdleState,
 		"run": RunState,
-		"climb_cliff": ClimbCliffState
+		"climb_cliff": ClimbCliffState,
+		"cut_scene" : CutSceneState,
 }
 
 func get_state(state_name):
