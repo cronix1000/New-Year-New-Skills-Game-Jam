@@ -9,8 +9,9 @@ var jump_force := 0.00
 #var 
 # Custom Bools
 var can_climb = true
-var can_jump
+var can_jump = true
 var can_crouch
+
 @onready var Arm1 = %Arm1
 @onready var Arm2 = %Arm2
 @onready var Leg1 = %Leg1
@@ -138,6 +139,8 @@ func _process(delta):
 		move_left()
 	if(Input.is_action_pressed("Right")):
 		move_right()
+	if(Input.is_action_just_pressed("Jump")):
+		change_state("jump_state")
 	
 	
 func move_left():

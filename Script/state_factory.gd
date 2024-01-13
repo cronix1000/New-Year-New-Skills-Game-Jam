@@ -8,6 +8,7 @@ func _init():
 		"run": RunState,
 		"climb_cliff": ClimbCliffState,
 		"cut_scene" : CutSceneState,
+		"jump_state" : JumpState 
 }
 
 func get_state(state_name):
