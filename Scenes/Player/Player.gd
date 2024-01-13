@@ -48,6 +48,12 @@ func remove_limb(body_part):
 	#	node.add_child(limb)
 	change_states()
 		
+#
+#func _input(event):
+	#if Input.is_action_just_pressed("ui_right"):
+		#$AnimationPlayer.play("stomp")
+	#if Input.is_action_just_pressed("ui_left"):
+		#$AnimationPlayer.play("groundpunch")
 
 	
 func flip_limbs():
